@@ -11,11 +11,51 @@ type ListNode struct {
 
 func main() {
 	//fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
-	fmt.Println(isPalindrome(121))
+	//fmt.Println(isPalindrome(121))
 	//fmt.Println(reverse(121))
 	//fmt.Println(reverse(911))
 	//fmt.Println(reverse(-878))
 	//fmt.Println(reverse(1534236469))
+	//fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"}))
+	//fmt.Println(longestCommonPrefix([]string{"jahoda", "jahodi", "jahaman"}))
+	fmt.Println(longestCommonPrefix([]string{"cir", "car"}))
+	fmt.Println(longestCommonPrefix([]string{"abab", "aba", ""}))
+}
+
+func longestCommonPrefix(strs []string) string {
+	var result string
+	if len(strs) == 0 {
+		return result
+	}
+	if len(strs) == 1 {
+		return strs[0]
+	}
+	maxCharacters := len(strs[0])
+	for _, str := range strs {
+		if len(str) < maxCharacters {
+			maxCharacters = len(str)
+		}
+	}
+	for i := 0; i < maxCharacters; i++ {
+		var temp uint8
+		var match int
+		for index, str := range strs {
+			if index == 0 {
+				temp = str[i]
+				match++
+				continue
+			}
+			if temp == str[i] {
+				match++
+			}
+		}
+		if match == len(strs) {
+			result += string(temp)
+		} else {
+			break
+		}
+	}
+	return result
 }
 
 func isPalindrome(x int) bool {
